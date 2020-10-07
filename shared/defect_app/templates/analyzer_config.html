@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1 class="mb-3">Configuraciones</h1>
+
+  {% for config in configs.items %}
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="{{ url_for('users.user_posts', username=config.author.username) }}">{{ config.author.username }}</a>
+            <small class="text-muted">{{ config.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+          </div>
+
+          <table class="table table-sm ">
+            <tbody>
+              {% for table_item, item_label in [(config.description,'Description'),(config.model_path,'Model Path'),(config.labels_path,'Labels Path'),(config.input_images_path,'Input Images Path'),(config.output_images_path,'Output Images Path'),(config.image_saving,'Image Saving'),(config.generate_template,'Generate Templates')] %}
+                <tr>
+                  <td width=200px>{{ item_label }}</td><td>{{ table_item }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          </div>
+      </article>
+  {% endfor %}
+
+  {% for page_num in configs.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+      {% if configs.page == page_num %}
+        <a class="btn btn-info mb-4" href="{{ url_for('analyzer_config_blueprint.analyzer_config', page=page_num) }}">{{ page_num }}</a>
+      {% else %}
+        <a class="btn btn-outline-info mb-4" href="{{ url_for('analyzer_config_blueprint.analyzer_config', page=page_num) }}">{{ page_num }}</a>
+      {% endif %}
+    {% else %}
+    ...
+    {% endif %}
+  {% endfor %}
+{% endblock content %}
