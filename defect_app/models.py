@@ -1,4 +1,4 @@
-from defect_app import db, login_manager
+from Defect_analyzer_front.defect_app import db, login_manager
 from flask import current_app
 from flask_login import UserMixin
 import datetime

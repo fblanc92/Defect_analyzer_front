@@ -1,8 +1,8 @@
 from flask_login import current_user, login_required
 from flask import render_template, request, Blueprint, flash, redirect, url_for, abort
-from defect_app import db
-from defect_app.models import Analyzer_config
-from defect_app.analyzerconfigs.forms import AnalyzerConfigForm
+from Defect_analyzer_front.defect_app import db
+from Defect_analyzer_front.defect_app.models import Analyzer_config
+from Defect_analyzer_front.defect_app.analyzerconfigs.forms import AnalyzerConfigForm
 
 analyzer_config_blueprint = Blueprint('analyzer_config_blueprint',__name__)
 
