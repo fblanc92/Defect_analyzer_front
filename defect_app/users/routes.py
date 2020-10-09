@@ -1,9 +1,9 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
-from defect_app import db, bcrypt
-from defect_app.models import User, Post
-from defect_app.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
-from defect_app.users.utils import save_picture, send_reset_email
+from Defect_analyzer_front.defect_app import db, bcrypt
+from Defect_analyzer_front.defect_app.models import User, Post
+from Defect_analyzer_front.defect_app.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
+from Defect_analyzer_front.defect_app.users.utils import save_picture, send_reset_email
 
 users = Blueprint('users', __name__)
 

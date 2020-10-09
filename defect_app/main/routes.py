@@ -1,5 +1,5 @@
 from flask import render_template, request, Blueprint
-from defect_app.models import Post
+from Defect_analyzer_front.defect_app.models import Post
 
 main = Blueprint('main', __name__)
 

@@ -1,8 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request, abort, Blueprint
 from flask_login import current_user, login_required
-from defect_app import db
-from defect_app.models import Post
-from defect_app.posts.forms import PostForm
+from Defect_analyzer_front.defect_app import db
+from Defect_analyzer_front.defect_app.models import Post
+from Defect_analyzer_front.defect_app.posts.forms import PostForm
 
 posts = Blueprint('posts', __name__)
 

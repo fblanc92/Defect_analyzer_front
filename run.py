@@ -1,6 +1,8 @@
 from Defect_analyzer_front.defect_app import create_app, db
+from Defect_analyzer_back.run import start_backend
+import threading
 
-app = create_app()  # nothing passed because Config class is default
+app = create_app()  # nothing given as arg because Config class is default
 
 
 def init_db():
@@ -10,7 +12,12 @@ def init_db():
         db.create_all()
 
 
+def start_frontend():
+    app_thread = threading.Thread(target=app.run(host='0.0.0.0', port=5000))
+    app_thread.start()
+
+
 if __name__ == '__main__':
     init_db()
-
-    app.run(host='0.0.0.0', port=5000)
+    start_backend()
+    start_frontend()
