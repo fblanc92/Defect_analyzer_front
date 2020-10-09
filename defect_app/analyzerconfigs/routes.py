@@ -11,9 +11,8 @@ analyzer_config_blueprint = Blueprint('analyzer_config_blueprint', __name__)
 @login_required
 def analyzer_config():  # Home | About | Analyzer Configs
     page = request.args.get('page', 1, type=int)
-    backend_config_list = get_all_the_configs_list()
     configs = Analyzer_config.query.order_by(Analyzer_config.date_created.desc()).paginate(page=page, per_page=5)
-    return render_template('analyzer_config.html', configs=backend_config_list)
+    return render_template('analyzer_config_bak.html', configs=configs)
 
 
 @analyzer_config_blueprint.route('/analyzer_config/new', methods=['GET', 'POST'])
@@ -21,6 +20,7 @@ def analyzer_config():  # Home | About | Analyzer Configs
 def edit_config():  # no argument config_id argument because the idea is edit the ONLY config
     form = AnalyzerConfigForm()
     if form.validate_on_submit():  # se crea una nueva, no se edita la actual para tener historia
+
         new_config = Analyzer_config(title=form.title.data,
                                      author=current_user,
                                      description=form.description.data,
@@ -60,4 +60,4 @@ def edit_config():  # no argument config_id argument because the idea is edit th
     form.image_saving.data = current_config.image_saving
     form.generate_template.data = current_config.generate_template
 
-    return render_template('edit_config.html', title='Edit Config', form=form, legend='Edit Config')
+    return render_template('edit_config_bak.html', title='Edit Config', form=form, legend='Edit Config')

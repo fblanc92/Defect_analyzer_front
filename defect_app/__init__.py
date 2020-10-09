@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from defect_app.config import Config
+from Defect_analyzer_front.defect_app.config import Config
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -22,17 +22,18 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
 
-    from defect_app.users.routes import users
-    from defect_app.posts.routes import posts
-    from defect_app.main.routes import main
-    from defect_app.errors.handlers import errors
-
-    from defect_app.analyzerconfigs.routes import analyzer_config_blueprint
+    from Defect_analyzer_front.defect_app.users.routes import users
+    from Defect_analyzer_front.defect_app.posts.routes import posts
+    from Defect_analyzer_front.defect_app.main.routes import main
+    from Defect_analyzer_front.defect_app.errors.handlers import errors
+    from Defect_analyzer_front.defect_app.analyzerconfigs.routes import analyzer_config_blueprint
+    from Defect_analyzer_front.defect_app.backendconfig.routes import backend_config_blueprint
 
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
     app.register_blueprint(errors)
     app.register_blueprint(analyzer_config_blueprint)
+    app.register_blueprint(backend_config_blueprint)
 
     return app
