@@ -26,19 +26,23 @@
                             form.path_to_previous_config_folder,
                             form.path_to_previous_config_file,
                             form.path_to_default_config_folder,
-                            form.path_to_default_config_json] %}
+                            form.path_to_default_config_json,
+                            form.post_per_page,
+                            form.const_px_cm,
+                            form.emails,
+                            form.thresholds] %}
 
-          {{ field.label(class="form-control-label")}}
-            {% if field.errors %}
-              {{ field(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in field.errors %}
-                      <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-            {% else %}
-              {{ field(class="form-control form-control-sm")}}
-            {% endif %}
+              {{ field.label(class="form-control-label")}}
+                {% if field.errors %}
+                  {{ field(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in field.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ field(class="form-control form-control-sm")}}
+                {% endif %}
           {% endfor %}
 
 

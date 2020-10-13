@@ -46,7 +46,11 @@ def edit_backend_config():  # no argument config_id argument because the idea is
                                     path_to_previous_config_folder=form.path_to_previous_config_folder.data,
                                     path_to_previous_config_file=form.path_to_previous_config_file.data,
                                     path_to_default_config_folder=form.path_to_default_config_folder.data,
-                                    path_to_default_config_json=form.path_to_default_config_json.data)
+                                    path_to_default_config_json=form.path_to_default_config_json.data,
+                                    post_per_page=form.post_per_page.data,
+                                    const_px_cm=form.const_px_cm.data,
+                                    emails=form.emails.data,
+                                    thresholds=form.thresholds.data)
 
         update_config(new_config.__dict__)
         flash('The configuration has been updated', 'success')
@@ -69,5 +73,9 @@ def edit_backend_config():  # no argument config_id argument because the idea is
     form.path_to_previous_config_file.data = current_config_json['config']['path_to_previous_config_file']
     form.path_to_default_config_folder.data = current_config_json['config']['path_to_default_config_folder']
     form.path_to_default_config_json.data = current_config_json['config']['path_to_default_config_json']
+    form.post_per_page.data = current_config_json['config']['post_per_page']
+    form.const_px_cm.data = current_config_json['config']['const_px_cm']
+    form.emails.data = current_config_json['emails']
+    form.thresholds.data = current_config_json['thresholds']
 
     return render_template('edit_backend_config.html', title='Edit Config', form=form, legend='Edit Config')

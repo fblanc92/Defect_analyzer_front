@@ -21,5 +21,8 @@ class BackendConfigForm(FlaskForm):
     path_to_previous_config_file = StringField('Previous Config File [.json]', validators=[DataRequired()])
     path_to_default_config_folder = StringField('Default Config Folder', validators=[DataRequired()])
     path_to_default_config_json = StringField('Default Config File [.json]', validators=[DataRequired()])
-
+    post_per_page = StringField('Post per page', validators=[DataRequired()])
+    const_px_cm = StringField('Const px/cm', validators=[DataRequired()])
+    emails = StringField('Emails', validators=[DataRequired()])
+    thresholds = StringField('Thresholds')
     submit = SubmitField('Create')

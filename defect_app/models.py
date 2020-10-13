@@ -77,7 +77,11 @@ class Backend_config:
                  path_to_previous_config_folder,
                  path_to_previous_config_file,
                  path_to_default_config_folder,
-                 path_to_default_config_json):
+                 path_to_default_config_json,
+                 post_per_page,
+                 const_px_cm,
+                 emails,
+                 thresholds):
         self.date_created = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
         self.input_images_formats = input_images_formats
         self.path_coils_folder = path_coils_folder
@@ -94,7 +98,10 @@ class Backend_config:
         self.path_to_previous_config_file = path_to_previous_config_file
         self.path_to_default_config_folder = path_to_default_config_folder
         self.path_to_default_config_json = path_to_default_config_json
-
+        self.post_per_page = post_per_page
+        self.const_px_cm = const_px_cm
+        self.emails = emails
+        self.thresholds = thresholds
 
 class Analyzer_config(db.Model):
     id = db.Column(db.Integer, primary_key=True)
