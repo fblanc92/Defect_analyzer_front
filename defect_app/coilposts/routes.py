@@ -42,5 +42,6 @@ coilposts_blueprint = Blueprint('coilposts_blueprint', __name__)
 @coilposts_blueprint.route("/post/<int:post_id>")
 def post(post_id):
     post = Coil_post.query.get_or_404(post_id)
-    return render_template('coilpost.html', title=post.coil_id, post=post)
+    areas_dict = eval(post.areas)
+    return render_template('coilpost.html', title=post.coil_id, post=post, **areas_dict)
 
