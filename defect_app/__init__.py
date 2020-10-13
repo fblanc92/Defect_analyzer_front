@@ -23,14 +23,16 @@ def create_app(config_class=Config):
     mail.init_app(app)
 
     from Defect_analyzer_front.defect_app.users.routes import users
-    from Defect_analyzer_front.defect_app.posts.routes import posts
+    # from Defect_analyzer_front.defect_app.posts.routes import posts
+    from Defect_analyzer_front.defect_app.coilposts.routes import coilposts_blueprint
     from Defect_analyzer_front.defect_app.main.routes import main
     from Defect_analyzer_front.defect_app.errors.handlers import errors
     from Defect_analyzer_front.defect_app.analyzerconfigs.routes import analyzer_config_blueprint
     from Defect_analyzer_front.defect_app.backendconfig.routes import backend_config_blueprint
 
     app.register_blueprint(users)
-    app.register_blueprint(posts)
+    # app.register_blueprint(posts)
+    app.register_blueprint(coilposts_blueprint)
     app.register_blueprint(main)
     app.register_blueprint(errors)
     app.register_blueprint(analyzer_config_blueprint)

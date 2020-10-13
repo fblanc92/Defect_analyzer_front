@@ -40,7 +40,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False,
-                            default=datetime.datetime.utcnow() + datetime.timedelta(hours=-3))
+                            default=datetime.datetime.now())
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -48,16 +48,18 @@ class Post(db.Model):
         return f"Post('{self.title}','{self.date_posted}')"
 
 
-class Image_post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    bobina = db.Column(db.String(15), nullable=False)
-    linea = db.Column(db.String(20), nullable=False)
-    date_posted = db.Column(db.String(100), nullable=False)
-    filename = db.Column(db.String(60), nullable=False)
-    filepath = db.Column(db.String(250), nullable=False)
+class Coil_post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)  # (post_id)
+    coil_id = db.Column(db.String(15), nullable=False)
+    date = db.Column(db.String(20), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False,
+                            default=datetime.datetime.now())
+    time = db.Column(db.String(20), nullable=False)
+    path = db.Column(db.String(300), nullable=False)
+    areas = db.Column(db.String(300), nullable=True)
 
     def __repr__(self):
-        return f"Image('Bobina:{self.bobina}','Linea:{self.linea}','Filename:{self.filename}','{self.date_posted}')"
+        return f"Coil:{self.coil_id}','Date-time:{self.date} - {self.time}','Path:{self.path}','Areas:{self.areas}')"
 
 
 class Backend_config:
@@ -92,6 +94,7 @@ class Backend_config:
         self.path_to_previous_config_file = path_to_previous_config_file
         self.path_to_default_config_folder = path_to_default_config_folder
         self.path_to_default_config_json = path_to_default_config_json
+
 
 class Analyzer_config(db.Model):
     id = db.Column(db.Integer, primary_key=True)
