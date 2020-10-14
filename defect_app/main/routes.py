@@ -30,7 +30,7 @@ def chart_data(data=None):
 def home(data=None):
     page = request.args.get('page', 1, type=int)
     post_per_page = get_current_config_json()['config']['post_per_page']
-    posts = Coil_post.query.order_by(Coil_post.date_posted.desc()).paginate(page=page, per_page=3)
+    posts = Coil_post.query.order_by(Coil_post.date_posted.desc()).paginate(page=page, per_page=post_per_page)
     data = {}
     data['title'] = 'Chart'
     return render_template('home.html', data=data, posts=posts, title='Defect Analyzer')
