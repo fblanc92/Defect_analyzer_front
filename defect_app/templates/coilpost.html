@@ -4,24 +4,26 @@
     <img class="rounded-circle article-img" src="{{ url_for('static',filename='profile_pics/' + 'trl_logo.jpg') }}">
     <div class="media-body">
       <div class="article-metadata">
-<!--        <a class="mr-2" href=" url_for('users.user_posts', username=post.author.username) "> post.author.username </a>-->
         <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</small>
-<!--         if current_user == post.author -->
-<!--          <div >-->
-<!--            <a class="btn btn-secondary btn-sm mt-1 mb-1" href=" url_for('posts.update_post', post_id=post.id) ">Update</a>-->
-<!--            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal" name="button">Delete</button>-->
-<!--          </div>-->
-<!--        endif -->
+
       </div>
       <h2 class="article-title">{{ post.coil_id }}</h2>
       <p class="article-content">{{ post.areas }}</p>
 
 
 
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10" id="canvas_holder">
+          <canvas id="canvas" height="20px" width="50px"></canvas>
 
-
-
-
+        </div>
+      </div>
+        <div class="container">
+          <p>
+          </p>
+        </div>
+    </div><!-- /.container -->
 
     </div>
   </article>
@@ -44,4 +46,46 @@
       </div>
     </div>
   </div>
+ <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/chart/Chart.min.js"></script>
+    <script type="text/javascript">
+
+    // This is the speed in which the loop occurs
+    loopSpeed = 5000
+    // Every loopSpeed milliseconds, get API data (randomized with Python)
+    // Then draw a bar graph with the data.
+
+
+      $.get( "/data", function( data ) { drawChart(data.set) });
+
+    function drawChart(set) {
+
+      var data = {
+          //labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+          labels: {{categories|tojson}},
+          datasets: [
+              {
+                  label: "Defects Areas",
+                  fillColor: "rgba(255,77,0,0.5)",
+                  strokeColor: "rgba(220,220,220,0.8)",
+                  highlightFill: "rgba(220,10,10,0.75)",
+                  highlightStroke: "rgba(220,0,0,1)",
+                  data: {{areas|tojson}}
+              }
+          ]
+      };
+
+      var ctx = document.getElementById("canvas").getContext("2d");
+
+      new Chart(ctx).Bar(data, {
+          responsive : true
+      });
+
+    }
+
+    </script>
 {% endblock content %}
