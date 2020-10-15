@@ -48,6 +48,8 @@ def edit_backend_config():  # no argument config_id argument because the idea is
                                     path_to_default_config_folder=form.path_to_default_config_folder.data,
                                     path_to_default_config_json=form.path_to_default_config_json.data,
                                     post_per_page=form.post_per_page.data,
+                                    starting_date=form.starting_date.data,
+                                    starting_time=form.starting_time.data,
                                     const_px_cm=form.const_px_cm.data,
                                     emails=form.emails.data,
                                     thresholds=form.thresholds.data)
@@ -74,6 +76,8 @@ def edit_backend_config():  # no argument config_id argument because the idea is
     form.path_to_default_config_folder.data = current_config_json['config']['path_to_default_config_folder']
     form.path_to_default_config_json.data = current_config_json['config']['path_to_default_config_json']
     form.post_per_page.data = current_config_json['config']['post_per_page']
+    form.starting_date.data = current_config_json['config']['starting_date']
+    form.starting_time.data = current_config_json['config']['starting_time']
     form.const_px_cm.data = current_config_json['config']['const_px_cm']
     form.emails.data = current_config_json['emails']
     form.thresholds.data = current_config_json['thresholds']
