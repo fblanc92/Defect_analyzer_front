@@ -9,7 +9,7 @@
 <!--  </head>-->
 <!--  <body>-->
 {% for post in posts.items %}
-      <article class="media content-section">
+      <article class="media content-section shadow-lg p-3 mb-5 bg-white rounded">
         <img class="rounded-circle article-img" src="{{ url_for('static',filename='profile_pics/' + 'trl_logo.jpg') }}">
         <div class="media-body">
           <div class="article-metadata">
@@ -17,8 +17,9 @@
 
           </div>
           <h2><a class="article-title" href="{{ url_for('coilposts_blueprint.post',post_id=post.id)}}">{{ post.coil_id }}</a></h2>
-                <p class="article-content">{{post.areas}}</p>
 
+            <p class="article-content"><strong>Defects Areas: </strong>{{post.areas}}</p>
+            <p><strong>Original Path:</strong> {{post.path}}</p>
               <div class="container">
                 <div class="row">
                   <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10" id="canvas_holder{{loop.index}}">
@@ -39,6 +40,7 @@
 
                       var data = {
                           labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+
                           datasets: [
                               {
                                   label: "Random Months",

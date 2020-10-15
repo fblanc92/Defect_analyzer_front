@@ -28,9 +28,16 @@ def chart_data(data=None):
 @main.route("/")
 @main.route("/home")
 def home(data=None):
+    def get_categories_and_areas():
+        area_dicts_for_all_coilposts = [eval(el.areas) for el in Coil_post.query.order_by(Coil_post.date_posted.desc())]
+        categories = [[categ for categ in area_dict] for area_dict in area_dicts_for_all_coilposts]
+        areas = [[int(mydict[val]) for val in mydict] for mydict in area_dicts_for_all_coilposts]
+        return categories, areas
+
     page = request.args.get('page', 1, type=int)
     post_per_page = get_current_config_json()['config']['post_per_page']
     posts = Coil_post.query.order_by(Coil_post.date_posted.desc()).paginate(page=page, per_page=post_per_page)
+    categories_per_coil, areas_per_coil = get_categories_and_areas()
     data = {}
     data['title'] = 'Chart'
     return render_template('home.html', data=data, posts=posts, title='Defect Analyzer')
