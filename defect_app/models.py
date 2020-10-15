@@ -79,6 +79,8 @@ class Backend_config:
                  path_to_default_config_folder,
                  path_to_default_config_json,
                  post_per_page,
+                 starting_date,
+                 starting_time,
                  const_px_cm,
                  emails,
                  thresholds):
@@ -99,6 +101,8 @@ class Backend_config:
         self.path_to_default_config_folder = path_to_default_config_folder
         self.path_to_default_config_json = path_to_default_config_json
         self.post_per_page = post_per_page
+        self.starting_date = starting_date
+        self.starting_time = starting_time
         self.const_px_cm = const_px_cm
         self.emails = emails
         self.thresholds = thresholds
